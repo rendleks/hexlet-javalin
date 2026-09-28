@@ -7,7 +7,8 @@ public class HelloWorld {
         // Создаем приложение
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
-            config.routes.get("/", ctx -> ctx.result("Hello World!"));
+            config.routes.get("/users", ctx -> ctx.result("GET /users"));
+            config.routes.post("/users", ctx -> ctx.result("POST /users"));
         });
         app.start(7070);
     }
