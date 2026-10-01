@@ -4,6 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     id("java")
     application
+    id("io.freefair.lombok") version "9.8.0"
 }
 
 application {
@@ -18,10 +19,12 @@ repositories {
 }
 
 dependencies {
+    implementation("gg.jte:jte:3.2.4")
+    implementation("io.javalin:javalin-rendering-jte:7.2.3")
+    implementation("io.freefair.lombok:io.freefair.lombok.gradle.plugin:9.8.0")
     implementation("io.javalin:javalin:7.2.3")
     implementation("org.slf4j:slf4j-simple:2.0.7")
     implementation("io.javalin:javalin-rendering:6.1.3")
-    implementation("gg.jte:jte:3.1.9")
     testImplementation(platform("org.junit:junit-bom:6.1.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
