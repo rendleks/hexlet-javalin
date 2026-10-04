@@ -22,6 +22,9 @@ public class HelloWorld {
             config.bundledPlugins.enableDevLogging();
             config.fileRenderer(new JavalinJte(createTemplateEngine()));
 
+            config.routes.get("/", ctx -> {
+                ctx.render("index.jte");
+            });
 
             config.routes.get(
                     "/courses/{id}",
