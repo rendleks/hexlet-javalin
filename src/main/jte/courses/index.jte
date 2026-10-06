@@ -14,5 +14,9 @@
                 </div>
             @endfor
         @endif
+        <form action="/courses" method="get">
+            <input type="search" name="term" value="${page.getTerm()}" />
+            <input type="submit" value="Search" />
+        </form>
     `
 )

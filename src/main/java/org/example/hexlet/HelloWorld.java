@@ -46,12 +46,24 @@ public class HelloWorld {
                         var course2 = new Course("PHP", "Основы PHP");
                         course1.setId(1L);
                         course2.setId(2L);
-                        var courses = List.of(
+                        var allCourses = List.of(
                                 course1,
                                 course2
                                 );
+                        var term = ctx.queryParam("term");
+                        List<Course> courses;
+                        if (term != null) {
+                            courses = allCourses.stream()
+                                    .filter(
+                                            course -> course.getName().toLowerCase().startsWith(term)
+                                    )
+                                    .toList();
+                        } else {
+                            courses = allCourses;
+                        }
+
                         var header = "Курсы по программированию";
-                        var page = new CoursesPage(courses, header);
+                        var page = new CoursesPage(courses, header, term);
                         ctx.render("courses/index.jte", Map.of("page", page));
                     }
             );
