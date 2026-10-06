@@ -13,7 +13,10 @@ import java.util.List;
 
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
+import org.example.hexlet.dto.courses.UsersPage;
 import org.example.hexlet.model.Course;
+import org.example.hexlet.model.User;
+import org.example.hexlet.repository.UserRepository;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -24,6 +27,27 @@ public class HelloWorld {
 
             config.routes.get("/", ctx -> {
                 ctx.render("index.jte");
+            });
+
+            config.routes.get("/users/build", ctx -> {
+               ctx.render("users/build.jte");
+            });
+
+            config.routes.post("/users", ctx -> {
+                var name = ctx.formParam("name").trim().toLowerCase();
+                var email = ctx.formParam("email").trim().toLowerCase();
+                var password = ctx.formParam("password");
+                var passwordConfirmation = ctx.formParam("passwordConfirmation");
+
+                var user = new User(name, email, password);
+                UserRepository.save(user);
+                ctx.redirect("/users");
+            });
+
+            config.routes.get("/users", ctx -> {
+                var headers = "Пользователи";
+                var page = new UsersPage(UserRepository.getEntities(), headers);
+                ctx.render("users/index.jte", Map.of("page", page));
             });
 
             config.routes.get(
