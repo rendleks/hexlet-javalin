@@ -1,9 +1,10 @@
 package gg.jte.generated.ondemand.users;
+import org.example.hexlet.util.NamedRoutes;
 @SuppressWarnings("unchecked")
 @javax.annotation.processing.Generated("gg.jte.TemplateEngine")
 public final class JtebuildGenerated {
 	public static final String JTE_NAME = "users/build.jte";
-	public static final int[] JTE_LINE_INFO = {1,1,1,1,1,1,1,1,3,3,5,15,23,33,34,38,45,91,91,91,92,92,92,92,92,92};
+	public static final int[] JTE_LINE_INFO = {0,0,2,2,2,2,2,2,2,4,4,6,16,24,34,35,39,46,64,64,64,64,64,64,64,64,64,91,91,91,92,92,92,92,92,92};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {
@@ -15,7 +16,16 @@ public final class JtebuildGenerated {
 				jteOutput.writeContent("\n              font-size: 16px; ");
 				jteOutput.writeContent("\n              transition: border-color 0.3s ease;\n            }\n\n            ");
 				jteOutput.writeContent("\n            input:focus,\n            textarea:focus {\n              outline: none;\n              border-color: #007bff;\n            }\n\n            ");
-				jteOutput.writeContent("\n            input[type=\"submit\"] {\n              width: 100%;\n              padding: 12px;\n              background-color: #007bff;\n              color: #white;\n              border: none;\n              border-radius: 4px;\n              font-size: 16px;\n              cursor: pointer;\n              transition: background-color 0.3s ease;\n            }\n\n            input[type=\"submit\"]:hover {\n              background-color: #0056b3;\n            }\n\n    </style>\n    <form action=\"/users\" method=\"post\">\n        <div>\n            <label for=\"\">\n                Name\n                <input type=\"text\" name=\"name\" />\n            </label>\n        </div>\n        <div>\n            <label for=\"\">\n                Email\n                <input type=\"email\" required name=\"email\" />\n            </label>\n        </div>\n        <div>\n            <label for=\"\">\n                Password\n                <input type=\"password\" required name=\"password\" />\n            </label>\n            <div>\n                <label for=\"\">\n                    Password confirmation\n                    <input type=\"password\" required name=\"passwordConfirmation\" />\n                </label>\n            </div>\n        </div>\n        <input type=\"submit\" value=\"Зарегистрировать\" />\n    </form>\n\n   ");
+				jteOutput.writeContent("\n            input[type=\"submit\"] {\n              width: 100%;\n              padding: 12px;\n              background-color: #007bff;\n              color: #white;\n              border: none;\n              border-radius: 4px;\n              font-size: 16px;\n              cursor: pointer;\n              transition: background-color 0.3s ease;\n            }\n\n            input[type=\"submit\"]:hover {\n              background-color: #0056b3;\n            }\n\n    </style>\n    <form");
+				var __jte_html_attribute_0 = NamedRoutes.usersPath();
+				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_0)) {
+					jteOutput.writeContent(" action=\"");
+					jteOutput.setContext("form", "action");
+					jteOutput.writeUserContent(__jte_html_attribute_0);
+					jteOutput.setContext("form", null);
+					jteOutput.writeContent("\"");
+				}
+				jteOutput.writeContent(" method=\"post\">\n        <div>\n            <label for=\"\">\n                Name\n                <input type=\"text\" name=\"name\" />\n            </label>\n        </div>\n        <div>\n            <label for=\"\">\n                Email\n                <input type=\"email\" required name=\"email\" />\n            </label>\n        </div>\n        <div>\n            <label for=\"\">\n                Password\n                <input type=\"password\" required name=\"password\" />\n            </label>\n            <div>\n                <label for=\"\">\n                    Password confirmation\n                    <input type=\"password\" required name=\"passwordConfirmation\" />\n                </label>\n            </div>\n        </div>\n        <input type=\"submit\" value=\"Зарегистрировать\" />\n    </form>\n   ");
 			}
 		});
 		jteOutput.writeContent("\n");

@@ -17,6 +17,7 @@ import org.example.hexlet.dto.courses.UsersPage;
 import org.example.hexlet.model.Course;
 import org.example.hexlet.model.User;
 import org.example.hexlet.repository.UserRepository;
+import org.example.hexlet.util.NamedRoutes;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -29,11 +30,11 @@ public class HelloWorld {
                 ctx.render("index.jte");
             });
 
-            config.routes.get("/users/build", ctx -> {
+            config.routes.get(NamedRoutes.buildUserPath(), ctx -> {
                ctx.render("users/build.jte");
             });
 
-            config.routes.post("/users", ctx -> {
+            config.routes.post(NamedRoutes.usersPath(), ctx -> {
                 var name = ctx.formParam("name").trim().toLowerCase();
                 var email = ctx.formParam("email").trim().toLowerCase();
                 var password = ctx.formParam("password");
@@ -41,17 +42,17 @@ public class HelloWorld {
 
                 var user = new User(name, email, password);
                 UserRepository.save(user);
-                ctx.redirect("/users");
+                ctx.redirect(NamedRoutes.usersPath());
             });
 
-            config.routes.get("/users", ctx -> {
+            config.routes.get(NamedRoutes.usersPath(), ctx -> {
                 var headers = "Пользователи";
                 var page = new UsersPage(UserRepository.getEntities(), headers);
                 ctx.render("users/index.jte", Map.of("page", page));
             });
 
             config.routes.get(
-                    "/courses/{id}",
+                    NamedRoutes.coursePath("{id}"),
                     ctx -> {
                         var id = ctx.pathParam("id");
                         // Как работать с базами данных мы разберем в следующих
@@ -63,7 +64,7 @@ public class HelloWorld {
                     });
 
             config.routes.get(
-                    "/courses",
+                    NamedRoutes.coursesPath(),
                     ctx -> {
 
                         var course1 = new Course("Java", "Основы Java");

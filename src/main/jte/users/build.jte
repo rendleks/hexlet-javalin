@@ -1,3 +1,4 @@
+@import org.example.hexlet.util.NamedRoutes
 
 @template.layout.page(
         content = @`
@@ -60,7 +61,7 @@
             }
 
     </style>
-    <form action="/users" method="post">
+    <form action="${NamedRoutes.usersPath()}" method="post">
         <div>
             <label for="">
                 Name
@@ -87,6 +88,5 @@
         </div>
         <input type="submit" value="Зарегистрировать" />
     </form>
-
    `
 )
