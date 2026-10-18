@@ -5,7 +5,7 @@ import org.example.hexlet.util.NamedRoutes;
 @javax.annotation.processing.Generated("gg.jte.TemplateEngine")
 public final class JtepageGenerated {
 	public static final String JTE_NAME = "layout/page.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,3,17,17,17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,22,22,22,29,29,29,3,3,3,3};
+	public static final int[] JTE_LINE_INFO = {0,0,1,3,3,3,3,3,17,17,17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,22,22,22,33,35,35,36,37,38,39,40,41,42,43,44,45,47,47,47,47,49,49,49,49,49,49,49,49,49,51,51,51,54,55,55,55,57,57,57,3,3,3,3};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, Content content) {
 		jteOutput.writeContent("\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\"\n          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n</head>\n<body>\n    <menu>\n        <li><a href=\"/\">Main Page</a></li>\n        <li><a");
 		var __jte_html_attribute_0 = NamedRoutes.coursesPath();
@@ -37,7 +37,40 @@ public final class JtepageGenerated {
 		jteOutput.writeContent(">Add user</a></li>\n    </menu>\n    <main>\n        ");
 		jteOutput.setContext("main", null);
 		jteOutput.writeUserContent(content);
-		jteOutput.writeContent("\n    </main>\n    <footer>\n        <a href=\"https://github.com/rendleks\">My GitHub Page</a>\n    </footer>\n</body>\n</html>\n");
+		jteOutput.writeContent("\n    </main>\n    <footer>\n        <a href=\"https://github.com/rendleks\">My GitHub Page</a>\n    </footer>\n</body>\n</html>\n\n@import io.hexlet.dto.posts.EditPostPage\n@param EditPostPage page\n\n");
+		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {
+			public void writeTo(gg.jte.html.HtmlTemplateOutput jteOutput) {
+				jteOutput.writeContent("\n    ");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n\n    <form action=\"/posts/");
+				jteOutput.setContext("form", "action");
+				jteOutput.writeUserContent(page.getPost().getId());
+				jteOutput.setContext("form", null);
+				jteOutput.writeContent("\" method=\"post\">\n        <label for=\"namePost\">Title</label>\n        <input type=\"text\" name=\"name\" id=\"namePost\"");
+				var __jte_html_attribute_3 = page.getPost().getName();
+				if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_3)) {
+					jteOutput.writeContent(" value=\"");
+					jteOutput.setContext("input", "value");
+					jteOutput.writeUserContent(__jte_html_attribute_3);
+					jteOutput.setContext("input", null);
+					jteOutput.writeContent("\"");
+				}
+				jteOutput.writeContent(">\n        <label for=\"bodyPost\">Content</label>\n        <textarea name=\"body\" id=\"bodyPost\" rows=\"3\" autocomplete=\"on\">");
+				jteOutput.setContext("textarea", null);
+				jteOutput.writeUserContent(page.getPost().getBody());
+				jteOutput.writeContent("</textarea>\n        <input type=\"submit\" value=\"Отправить\">\n    </form>\n    ");
+				jteOutput.writeContent("\n");
+			}
+		});
+		jteOutput.writeContent("\n\n");
 	}
 	public static void renderMap(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map<String, Object> params) {
 		Content content = (Content)params.get("content");

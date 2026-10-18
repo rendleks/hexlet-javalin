@@ -28,30 +28,3 @@
 </body>
 </html>
 
-@import io.hexlet.dto.posts.EditPostPage
-@param EditPostPage page
-
-@template.layout.page(
-content = @`
-    <!-- BEGIN (write your solution here) -->
-<%--     @if(page.getErrors() != null)--%>
-<%--            <ul>--%>
-<%--                @for(var validator : page.getErrors().values())--%>
-<%--        @for(var error : validator)--%>
-<%--                        <li>${error.getMessage()}</li>--%>
-<%--                    @endfor--%>
-<%--        @endfor--%>
-<%--            </ul>--%>
-<%--        @endif --%>
-
-    <form action="/posts/${page.getPost().getId()}" method="post">
-        <label for="namePost">Title</label>
-        <input type="text" name="name" id="namePost" value="${page.getPost().getName()}">
-        <label for="bodyPost">Content</label>
-        <textarea name="body" id="bodyPost" rows="3" autocomplete="on">${page.getPost().getBody()}</textarea>
-        <input type="submit" value="Отправить">
-    </form>
-    <!-- END -->
-`
-)
-

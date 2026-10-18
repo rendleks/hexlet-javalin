@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.List;
 
 import org.example.hexlet.controller.UsersController;
+import org.example.hexlet.dto.MainPage;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.dto.users.UsersPage;
@@ -30,7 +31,10 @@ public class HelloWorld {
             config.fileRenderer(new JavalinJte(createTemplateEngine()));
 
             config.routes.get(NamedRoutes.rootPath(), ctx -> {
-                ctx.render("index.jte");
+                var visited = Boolean.valueOf(ctx.cookie("visited"));
+                var page = new MainPage(visited);
+                ctx.render("index.jte", Map.of("page", page));
+                ctx.cookie("visited", String.valueOf(true));
             });
 
             config.routes.get(NamedRoutes.usersPath(), UsersController::index);
