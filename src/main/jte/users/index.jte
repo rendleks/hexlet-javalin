@@ -1,5 +1,6 @@
 @import org.example.hexlet.dto.courses.CoursesPage
-@import org.example.hexlet.dto.courses.UsersPage
+@import org.example.hexlet.dto.users.UsersPage
+@import org.example.hexlet.util.NamedRoutes
 @param UsersPage page
 
 @template.layout.page(
@@ -32,7 +33,6 @@ content = @`
           background-color: #f1f1f1;
         }
     </style>
-    <h1>${page.getHeader()}</h1>
     @if(page.getUsers().isEmpty())
         <p>Пока не добавлено ни одного пользователя</p>
     @else
@@ -41,19 +41,22 @@ content = @`
             <th>id</th>
             <th>Имя</th>
             <th>Почта</th>
+            <th>Действие</th>
         </tr>
         @for(var user : page.getUsers())
                 <tr>
                     <td>${user.getId()}</td>
                     <td>${user.getName()}</td>
                     <td>${user.getEmail()}</td>
+                    <td>
+                        <form action="${NamedRoutes.userPath(user.getId())}" method="delete">
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </td>
                 </tr>
         @endfor
         </table>
     @endif
-<%--    <form action="/users" method="get">--%>
-<%--        <input type="search" name="term" value="${page.getTerm()}" />--%>
-<%--        <input type="submit" value="Search" />--%>
-<%--    </form>--%>
+
 `
 )

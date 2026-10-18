@@ -1,11 +1,12 @@
 package gg.jte.generated.ondemand.users;
 import org.example.hexlet.dto.courses.CoursesPage;
-import org.example.hexlet.dto.courses.UsersPage;
+import org.example.hexlet.dto.users.UsersPage;
+import org.example.hexlet.util.NamedRoutes;
 @SuppressWarnings("unchecked")
 @javax.annotation.processing.Generated("gg.jte.TemplateEngine")
 public final class JteindexGenerated {
 	public static final String JTE_NAME = "users/index.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,2,2,2,2,4,4,6,6,10,17,25,30,35,35,35,36,36,38,38,45,45,47,47,47,48,48,48,49,49,49,51,51,53,53,54,55,56,57,58,58,58,58,58,2,2,2,2};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,3,3,3,3,5,5,7,7,11,18,26,31,36,36,38,38,46,46,48,48,48,49,49,49,50,50,50,52,52,52,52,52,52,52,52,52,57,57,59,59,61,61,61,61,61,3,3,3,3};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, UsersPage page) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {
@@ -14,14 +15,11 @@ public final class JteindexGenerated {
 				jteOutput.writeContent("\n          font-family: sans-serif;\n        }\n\n        th, td {\n          padding: 10px 14px;\n          text-align: left;\n          border-bottom: 1px solid #dddddd; ");
 				jteOutput.writeContent("\n        }\n\n        th {\n          background-color: #f4f4f4;\n          font-weight: bold;\n        }\n\n        ");
 				jteOutput.writeContent("\n        tr:nth-child(even) {\n          background-color: #f9f9f9;\n        }\n\n        ");
-				jteOutput.writeContent("\n        tr:hover {\n          background-color: #f1f1f1;\n        }\n    </style>\n    <h1>");
-				jteOutput.setContext("h1", null);
-				jteOutput.writeUserContent(page.getHeader());
-				jteOutput.writeContent("</h1>\n    ");
+				jteOutput.writeContent("\n        tr:hover {\n          background-color: #f1f1f1;\n        }\n    </style>\n    ");
 				if (page.getUsers().isEmpty()) {
 					jteOutput.writeContent("\n        <p>Пока не добавлено ни одного пользователя</p>\n    ");
 				} else {
-					jteOutput.writeContent("\n        <table>\n        <tr>\n            <th>id</th>\n            <th>Имя</th>\n            <th>Почта</th>\n        </tr>\n        ");
+					jteOutput.writeContent("\n        <table>\n        <tr>\n            <th>id</th>\n            <th>Имя</th>\n            <th>Почта</th>\n            <th>Действие</th>\n        </tr>\n        ");
 					for (var user : page.getUsers()) {
 						jteOutput.writeContent("\n                <tr>\n                    <td>");
 						jteOutput.setContext("td", null);
@@ -32,15 +30,20 @@ public final class JteindexGenerated {
 						jteOutput.writeContent("</td>\n                    <td>");
 						jteOutput.setContext("td", null);
 						jteOutput.writeUserContent(user.getEmail());
-						jteOutput.writeContent("</td>\n                </tr>\n        ");
+						jteOutput.writeContent("</td>\n                    <td>\n                        <form");
+						var __jte_html_attribute_0 = NamedRoutes.userPath(user.getId());
+						if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_0)) {
+							jteOutput.writeContent(" action=\"");
+							jteOutput.setContext("form", "action");
+							jteOutput.writeUserContent(__jte_html_attribute_0);
+							jteOutput.setContext("form", null);
+							jteOutput.writeContent("\"");
+						}
+						jteOutput.writeContent(" method=\"delete\">\n                            <input type=\"submit\" value=\"Delete\" />\n                        </form>\n                    </td>\n                </tr>\n        ");
 					}
 					jteOutput.writeContent("\n        </table>\n    ");
 				}
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
-				jteOutput.writeContent("\n");
+				jteOutput.writeContent("\n\n");
 			}
 		});
 	}

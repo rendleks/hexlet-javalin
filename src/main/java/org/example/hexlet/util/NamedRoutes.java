@@ -4,12 +4,31 @@ import jakarta.enterprise.inject.Stereotype;
 
 public class NamedRoutes {
 
+    public static String rootPath() {
+        return "/";
+    }
     public static String usersPath() {
-        return "/u";
+        return "/users";
     }
 
     public static String buildUserPath() {
-        return "/u/build";
+        return "/users/build";
+    }
+
+    public static String userPath(Long id) {
+        return coursePath(String.valueOf((id)));
+    }
+
+    public static String userPath(String id) {
+        return "/users/" + id;
+    }
+
+    public static String userPathEdit(Long id) {
+        return userPath(id) + "/edit";
+    }
+
+    public static String userPathEdit(String id) {
+        return userPath(id) + "/edit";
     }
 
     public static String coursesPath() {

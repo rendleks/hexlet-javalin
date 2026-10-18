@@ -1,4 +1,5 @@
 
+
 @template.layout.page(
     content = @`
         <h2>Главная страница!</h2>

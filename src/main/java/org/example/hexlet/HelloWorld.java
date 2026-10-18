@@ -11,13 +11,16 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.List;
 
+import org.example.hexlet.controller.UsersController;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
-import org.example.hexlet.dto.courses.UsersPage;
+import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
 import org.example.hexlet.model.User;
 import org.example.hexlet.repository.UserRepository;
 import org.example.hexlet.util.NamedRoutes;
+
+import javax.naming.Name;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -26,30 +29,17 @@ public class HelloWorld {
             config.bundledPlugins.enableDevLogging();
             config.fileRenderer(new JavalinJte(createTemplateEngine()));
 
-            config.routes.get("/", ctx -> {
+            config.routes.get(NamedRoutes.rootPath(), ctx -> {
                 ctx.render("index.jte");
             });
 
-            config.routes.get(NamedRoutes.buildUserPath(), ctx -> {
-               ctx.render("users/build.jte");
-            });
-
-            config.routes.post(NamedRoutes.usersPath(), ctx -> {
-                var name = ctx.formParam("name").trim().toLowerCase();
-                var email = ctx.formParam("email").trim().toLowerCase();
-                var password = ctx.formParam("password");
-                var passwordConfirmation = ctx.formParam("passwordConfirmation");
-
-                var user = new User(name, email, password);
-                UserRepository.save(user);
-                ctx.redirect(NamedRoutes.usersPath());
-            });
-
-            config.routes.get(NamedRoutes.usersPath(), ctx -> {
-                var headers = "Пользователи";
-                var page = new UsersPage(UserRepository.getEntities(), headers);
-                ctx.render("users/index.jte", Map.of("page", page));
-            });
+            config.routes.get(NamedRoutes.usersPath(), UsersController::index);
+            config.routes.get(NamedRoutes.buildUserPath(), UsersController::build);
+            config.routes.get(NamedRoutes.userPath("{id}"), UsersController::show);
+            config.routes.post(NamedRoutes.usersPath(), UsersController::create);
+            config.routes.get(NamedRoutes.userPathEdit("{id}"), UsersController::edit);
+            config.routes.patch(NamedRoutes.userPath("{id}"), UsersController::update);
+            config.routes.delete(NamedRoutes.userPath("{id}"), UsersController::destroy);
 
             config.routes.get(
                     NamedRoutes.coursePath("{id}"),
