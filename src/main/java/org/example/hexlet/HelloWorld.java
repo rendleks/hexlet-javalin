@@ -1,5 +1,6 @@
 package org.example.hexlet;
 
+import com.sun.tools.jconsole.JConsoleContext;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
 
@@ -11,6 +12,7 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.List;
 
+import org.example.hexlet.controller.SessionsController;
 import org.example.hexlet.controller.UsersController;
 import org.example.hexlet.dto.MainPage;
 import org.example.hexlet.dto.courses.CoursePage;
@@ -32,7 +34,7 @@ public class HelloWorld {
 
             config.routes.get(NamedRoutes.rootPath(), ctx -> {
                 var visited = Boolean.valueOf(ctx.cookie("visited"));
-                var page = new MainPage(visited);
+                var page = new MainPage(visited, ctx.sessionAttribute("currentUser"));
                 ctx.render("index.jte", Map.of("page", page));
                 ctx.cookie("visited", String.valueOf(true));
             });
@@ -44,6 +46,10 @@ public class HelloWorld {
             config.routes.get(NamedRoutes.userPathEdit("{id}"), UsersController::edit);
             config.routes.patch(NamedRoutes.userPath("{id}"), UsersController::update);
             config.routes.delete(NamedRoutes.userPath("{id}"), UsersController::destroy);
+
+            config.routes.get(NamedRoutes.sessionsPathBuild(), SessionsController::build);
+            config.routes.post(NamedRoutes.sessionsPath(), SessionsController::create);
+            config.routes.delete(NamedRoutes.sessionsPath(), SessionsController::destroy);
 
             config.routes.get(
                     NamedRoutes.coursePath("{id}"),

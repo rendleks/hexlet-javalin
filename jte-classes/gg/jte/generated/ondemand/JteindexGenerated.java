@@ -1,10 +1,11 @@
 package gg.jte.generated.ondemand;
 import org.example.hexlet.dto.MainPage;
+import org.example.hexlet.util.NamedRoutes;
 @SuppressWarnings("unchecked")
 @javax.annotation.processing.Generated("gg.jte.TemplateEngine")
 public final class JteindexGenerated {
 	public static final String JTE_NAME = "index.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,1,1,1,1,3,3,5,5,6,6,9,9,12,12,12,12,12,1,1,1,1};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,2,2,2,2,4,4,6,6,7,7,10,10,11,11,13,13,13,13,13,13,13,13,13,14,14,15,15,15,17,17,20,20,20,20,20,2,2,2,2};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, MainPage page) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {
@@ -12,6 +13,24 @@ public final class JteindexGenerated {
 				jteOutput.writeContent("\n        ");
 				if (!page.isVisited()) {
 					jteOutput.writeContent("\n            Это сообщение показывается только один раз.\n            Если вы хотите увидеть его снова, сотрите куки\n        ");
+				}
+				jteOutput.writeContent("\n        ");
+				if (page.getCurrentUser() == null) {
+					jteOutput.writeContent("\n            Пользователь, не залогенен:\n            <a");
+					var __jte_html_attribute_0 = NamedRoutes.sessionsPathBuild();
+					if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_0)) {
+						jteOutput.writeContent(" href=\"");
+						jteOutput.setContext("a", "href");
+						jteOutput.writeUserContent(__jte_html_attribute_0);
+						jteOutput.setContext("a", null);
+						jteOutput.writeContent("\"");
+					}
+					jteOutput.writeContent(">login</a>\n        ");
+				} else {
+					jteOutput.writeContent("\n            Добро пожаловать, ");
+					jteOutput.setContext("html", null);
+					jteOutput.writeUserContent(page.getCurrentUser());
+					jteOutput.writeContent(".\n            Чтобы разлогиниться, удалите куку JSESSIONID из браузера.\n        ");
 				}
 				jteOutput.writeContent("\n        <h2>Главная страница!</h2>\n        <p>Тут типо должен быть контент</p>\n    ");
 			}

@@ -7,6 +7,14 @@ public class NamedRoutes {
     public static String rootPath() {
         return "/";
     }
+
+    public static String sessionsPath() {
+        return "/sessions";
+    }
+
+    public static String sessionsPathBuild() {
+        return "/sessions/build";
+    }
     public static String usersPath() {
         return "/users";
     }
