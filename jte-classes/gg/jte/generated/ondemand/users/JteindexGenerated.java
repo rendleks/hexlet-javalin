@@ -6,7 +6,7 @@ import org.example.hexlet.util.NamedRoutes;
 @javax.annotation.processing.Generated("gg.jte.TemplateEngine")
 public final class JteindexGenerated {
 	public static final String JTE_NAME = "users/index.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,3,3,3,3,5,5,7,7,11,18,26,31,36,36,38,38,46,46,48,48,48,49,49,49,50,50,50,52,52,52,52,52,52,52,52,52,57,57,59,59,61,61,61,61,61,3,3,3,3};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,3,3,3,3,5,5,7,7,11,18,26,31,38,38,40,40,40,42,42,43,43,45,45,53,53,55,55,55,56,56,56,57,57,57,59,59,59,59,59,59,59,59,59,64,64,66,66,68,68,68,68,68,3,3,3,3};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, UsersPage page) {
 		jteOutput.writeContent("\n");
 		gg.jte.generated.ondemand.layout.JtepageGenerated.render(jteOutput, jteHtmlInterceptor, new gg.jte.html.HtmlContent() {
@@ -15,7 +15,14 @@ public final class JteindexGenerated {
 				jteOutput.writeContent("\n          font-family: sans-serif;\n        }\n\n        th, td {\n          padding: 10px 14px;\n          text-align: left;\n          border-bottom: 1px solid #dddddd; ");
 				jteOutput.writeContent("\n        }\n\n        th {\n          background-color: #f4f4f4;\n          font-weight: bold;\n        }\n\n        ");
 				jteOutput.writeContent("\n        tr:nth-child(even) {\n          background-color: #f9f9f9;\n        }\n\n        ");
-				jteOutput.writeContent("\n        tr:hover {\n          background-color: #f1f1f1;\n        }\n    </style>\n    ");
+				jteOutput.writeContent("\n        tr:hover {\n          background-color: #f1f1f1;\n        }\n    </style>\n\n\n    ");
+				if (page.getFlash() != null) {
+					jteOutput.writeContent("\n        <div class=\"alert alert-primary\" role=\"alert\">\n            ");
+					jteOutput.setContext("div", null);
+					jteOutput.writeUserContent(page.getFlash());
+					jteOutput.writeContent("\n        </div>\n    ");
+				}
+				jteOutput.writeContent("\n    ");
 				if (page.getUsers().isEmpty()) {
 					jteOutput.writeContent("\n        <p>Пока не добавлено ни одного пользователя</p>\n    ");
 				} else {

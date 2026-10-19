@@ -13,8 +13,9 @@ import java.util.Map;
 
 public class UsersController {
     public static void index(Context ctx) {
+        String flash = ctx.consumeSessionAttribute("flash");
         var users = UserRepository.getEntities();
-        var page = new UsersPage(users);
+        var page = new UsersPage(users, flash);
         ctx.render("users/index.jte", Map.of("page", page));
     }
 
@@ -42,6 +43,7 @@ public class UsersController {
 
         var user = new User(name, email, password);
         UserRepository.save(user);
+        ctx.sessionAttribute("flash", "User has been created");
         ctx.redirect(NamedRoutes.usersPath());
     }
 

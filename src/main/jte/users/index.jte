@@ -33,6 +33,13 @@ content = @`
           background-color: #f1f1f1;
         }
     </style>
+
+
+    @if(page.getFlash() != null)
+        <div class="alert alert-primary" role="alert">
+            ${page.getFlash()}
+        </div>
+    @endif
     @if(page.getUsers().isEmpty())
         <p>Пока не добавлено ни одного пользователя</p>
     @else
