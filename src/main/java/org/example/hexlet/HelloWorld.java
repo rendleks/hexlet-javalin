@@ -1,6 +1,5 @@
 package org.example.hexlet;
 
-import com.sun.tools.jconsole.JConsoleContext;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinJte;
 
@@ -8,9 +7,18 @@ import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.resolve.DirectoryCodeResolver;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+import org.example.hexlet.repository.BaseRepository;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Map;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.example.hexlet.controller.SessionsController;
 import org.example.hexlet.controller.UsersController;
@@ -26,7 +34,23 @@ import org.example.hexlet.util.NamedRoutes;
 import javax.naming.Name;
 
 public class HelloWorld {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
+
+        var hikariConfig = new HikariConfig();
+        hikariConfig.setJdbcUrl("jdbc:h2:mem:hexlet_project;DB_CLOSE_DELAY=-1;");
+
+        var dataSource = new HikariDataSource(hikariConfig);
+
+        var url = HelloWorld.class.getClassLoader().getResourceAsStream("schema.sql");
+        var sql =
+                new BufferedReader(new InputStreamReader(url))
+                        .lines()
+                        .collect(Collectors.joining("\n"));
+        try (var connection = dataSource.getConnection(); var statement = connection.createStatement()) {
+            statement.execute(sql);
+        }
+
+        BaseRepository.dataSource = dataSource;
 
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
@@ -45,7 +69,7 @@ public class HelloWorld {
             config.routes.post(NamedRoutes.usersPath(), UsersController::create);
             config.routes.get(NamedRoutes.userPathEdit("{id}"), UsersController::edit);
             config.routes.patch(NamedRoutes.userPath("{id}"), UsersController::update);
-            config.routes.delete(NamedRoutes.userPath("{id}"), UsersController::destroy);
+            config.routes.post(NamedRoutes.deleteUserPath("{id}"), UsersController::destroy);
 
             config.routes.get(NamedRoutes.sessionsPathBuild(), SessionsController::build);
             config.routes.post(NamedRoutes.sessionsPath(), SessionsController::create);

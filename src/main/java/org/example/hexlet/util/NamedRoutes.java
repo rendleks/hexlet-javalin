@@ -31,12 +31,20 @@ public class NamedRoutes {
         return "/users/" + id;
     }
 
+    public static String deleteUserPath(Long id) {
+        return deleteUserPath(String.valueOf(id));
+    }
+
+    public static String deleteUserPath(String id) {
+        return "/users/" + id + "/delete";
+    }
+
     public static String userPathEdit(Long id) {
-        return userPath(id) + "/edit";
+        return userPathEdit(String.valueOf(id));
     }
 
     public static String userPathEdit(String id) {
-        return userPath(id) + "/edit";
+        return "/users/" + id + "/edit";
     }
 
     public static String coursesPath() {

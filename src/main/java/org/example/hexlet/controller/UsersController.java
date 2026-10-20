@@ -9,17 +9,18 @@ import org.example.hexlet.model.User;
 import org.example.hexlet.repository.UserRepository;
 import org.example.hexlet.util.NamedRoutes;
 
+import java.sql.SQLException;
 import java.util.Map;
 
 public class UsersController {
-    public static void index(Context ctx) {
+    public static void index(Context ctx) throws SQLException {
         String flash = ctx.consumeSessionAttribute("flash");
         var users = UserRepository.getEntities();
         var page = new UsersPage(users, flash);
         ctx.render("users/index.jte", Map.of("page", page));
     }
 
-    public static void show(Context ctx) {
+    public static void show(Context ctx) throws SQLException {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         var user =
                 UserRepository.find(id)
@@ -36,7 +37,7 @@ public class UsersController {
         ctx.render("users/build.jte");
     }
 
-    public static void create(Context ctx) {
+    public static void create(Context ctx) throws SQLException {
         var name = ctx.formParam("name");
         var email = ctx.formParam("email");
         var password = ctx.formParam("password");
@@ -47,7 +48,7 @@ public class UsersController {
         ctx.redirect(NamedRoutes.usersPath());
     }
 
-    public static void edit(Context ctx) {
+    public static void edit(Context ctx)  throws SQLException {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         var user =
                 UserRepository.find(id)
@@ -59,7 +60,7 @@ public class UsersController {
         ctx.render("users/edit.jte", Map.of("page", page));
     }
 
-    public static void update(Context ctx) {
+    public static void update(Context ctx) throws SQLException {
         var id = ctx.pathParamAsClass("id", Long.class).get();
 
         var name = ctx.formParam("name");
@@ -79,7 +80,7 @@ public class UsersController {
         ctx.redirect(NamedRoutes.usersPath());
     }
 
-    public static void destroy(Context ctx) {
+    public static void destroy(Context ctx) throws SQLException {
         var id = ctx.pathParamAsClass("id", Long.class).get();
         UserRepository.delete(id);
         ctx.redirect(NamedRoutes.usersPath());

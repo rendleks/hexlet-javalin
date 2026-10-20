@@ -38,7 +38,7 @@ public final class JteindexGenerated {
 						jteOutput.setContext("td", null);
 						jteOutput.writeUserContent(user.getEmail());
 						jteOutput.writeContent("</td>\n                    <td>\n                        <form");
-						var __jte_html_attribute_0 = NamedRoutes.userPath(user.getId());
+						var __jte_html_attribute_0 = NamedRoutes.deleteUserPath(user.getId());
 						if (gg.jte.runtime.TemplateUtils.isAttributeRendered(__jte_html_attribute_0)) {
 							jteOutput.writeContent(" action=\"");
 							jteOutput.setContext("form", "action");
@@ -46,7 +46,7 @@ public final class JteindexGenerated {
 							jteOutput.setContext("form", null);
 							jteOutput.writeContent("\"");
 						}
-						jteOutput.writeContent(" method=\"delete\">\n                            <input type=\"submit\" value=\"Delete\" />\n                        </form>\n                    </td>\n                </tr>\n        ");
+						jteOutput.writeContent(" method=\"post\">\n                            <input type=\"submit\" value=\"Delete\" />\n                        </form>\n                    </td>\n                </tr>\n        ");
 					}
 					jteOutput.writeContent("\n        </table>\n    ");
 				}

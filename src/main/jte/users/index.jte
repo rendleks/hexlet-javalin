@@ -56,7 +56,7 @@ content = @`
                     <td>${user.getName()}</td>
                     <td>${user.getEmail()}</td>
                     <td>
-                        <form action="${NamedRoutes.userPath(user.getId())}" method="delete">
+                        <form action="${NamedRoutes.deleteUserPath(user.getId())}" method="post">
                             <input type="submit" value="Delete" />
                         </form>
                     </td>

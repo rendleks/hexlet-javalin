@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+    implementation("com.h2database:h2:2.2.220")
+    implementation("com.zaxxer:HikariCP:5.0.1")
     implementation("gg.jte:jte:3.2.4")
     implementation("io.javalin:javalin-rendering-jte:7.2.3")
     implementation("io.freefair.lombok:io.freefair.lombok.gradle.plugin:9.8.0")
